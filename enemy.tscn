@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://ss11vq7eo7e5"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_0k0qf"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4vxs8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hdgud"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3xh48"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fm5dw"]
+
+[node name="Enemy" type="RigidBody3D"]
+script = ExtResource("1_0k0qf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_4vxs8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Enemies"]]
+shape = SubResource("CapsuleShape3D_hdgud")
+
+[node name="PlayerDetect" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetect"]
+shape = SubResource("CapsuleShape3D_3xh48")
+
+[node name="Hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("CapsuleShape3D_fm5dw")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

@@ -1,14 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1jtvpi16toet"]
+[gd_scene load_steps=6 format=3 uid="uid://c1jtvpi16toet"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wwk74"]
 [ext_resource type="Script" path="res://SpringArm3D.gd" id="2_v6cxj"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="3_hsupo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wdut8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_aooum"]
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.639006, 0.21328, -0.484548)
 script = ExtResource("1_wwk74")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -20,9 +20,12 @@ spring_length = 3.0
 script = ExtResource("2_v6cxj")
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+script = ExtResource("3_hsupo")
 
 [node name="RayCast3D" type="RayCast3D" parent="SpringArm3D/Camera3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.488743, 0, 0.872428, 0, 1, 0, -0.872428, 0, 0.488743, 0.139234, 0, 0)
 mesh = SubResource("CapsuleMesh_aooum")
+
+[node name="Marker3D" type="Marker3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.42562)

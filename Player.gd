@@ -25,6 +25,7 @@ func _physics_process(delta):
 	
 	if direction:
 		velocity.x = direction.x * SPEED
+		$MeshInstance3D.rotation.y = lerp_angle($MeshInstance3D.rotation.y,atan2(direction.x,direction.z),delta*5)
 		velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
