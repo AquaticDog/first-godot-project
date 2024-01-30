@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://14ndgiwgwxrf"]
+[gd_scene load_steps=8 format=3 uid="uid://14ndgiwgwxrf"]
 
 [ext_resource type="PackedScene" uid="uid://c1jtvpi16toet" path="res://player.tscn" id="1_mu7db"]
+[ext_resource type="PackedScene" uid="uid://bkwrxo6nleftu" path="res://spanwer.tscn" id="2_0mf4a"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dgh1f"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -41,3 +42,6 @@ shape = SubResource("ConcavePolygonShape3D_5hu1g")
 
 [node name="Player" parent="." instance=ExtResource("1_mu7db")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.639006, 2.67899, -0.484548)
+
+[node name="spanwer" parent="." instance=ExtResource("2_0mf4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.69233, 0.988025, 1.86209)

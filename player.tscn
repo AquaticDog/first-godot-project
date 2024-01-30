@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1jtvpi16toet"]
+[gd_scene load_steps=9 format=3 uid="uid://c1jtvpi16toet"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wwk74"]
 [ext_resource type="Script" path="res://SpringArm3D.gd" id="2_v6cxj"]
@@ -7,6 +7,13 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wdut8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_aooum"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fb2ll"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x3db5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yn7tk"]
+bg_color = Color(0.670588, 0.607843, 0.141176, 1)
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_wwk74")
@@ -29,3 +36,37 @@ mesh = SubResource("CapsuleMesh_aooum")
 
 [node name="Marker3D" type="Marker3D" parent="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.42562)
+
+[node name="Area3D" type="Area3D" parent="." groups=["Player"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_fb2ll")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 35.0
+offset_top = 17.0
+offset_right = 311.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_styles/background = SubResource("StyleBoxFlat_x3db5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yn7tk")
+value = 100.0
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_left = -15.0
+offset_top = 4.0
+offset_right = 1164.0
+offset_bottom = 643.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 483.0
+offset_top = 283.0
+offset_right = 756.0
+offset_bottom = 341.0
+theme_override_font_sizes/normal_font_size = 33
+text = "Game Over"
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

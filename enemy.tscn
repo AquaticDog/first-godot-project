@@ -1,12 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://ss11vq7eo7e5"]
+[gd_scene load_steps=7 format=3 uid="uid://ss11vq7eo7e5"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_0k0qf"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jmic5"]
+albedo_color = Color(1, 0, 0, 1)
+metallic = 0.51
+roughness = 0.0
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4vxs8"]
+material = SubResource("StandardMaterial3D_jmic5")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hdgud"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3xh48"]
+radius = 7.977
+height = 17.822
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fm5dw"]
 
@@ -24,9 +32,11 @@ shape = SubResource("CapsuleShape3D_hdgud")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetect"]
 shape = SubResource("CapsuleShape3D_3xh48")
 
-[node name="Hitbox" type="Area3D" parent="."]
+[node name="Hitbox" type="Area3D" parent="." groups=["Enemy"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("CapsuleShape3D_fm5dw")
 
+[connection signal="area_entered" from="PlayerDetect" to="." method="_on_player_detect_area_entered"]
+[connection signal="area_exited" from="PlayerDetect" to="." method="_on_player_detect_area_exited"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

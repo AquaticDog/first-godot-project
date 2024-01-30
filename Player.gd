@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+var health = 100
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -32,3 +33,14 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+
+func _on_area_3d_area_entered(body):
+	if body.is_in_group("Enemy"):	
+		health -=10
+		$ProgressBar.value=health
+		
+		if health==0: 
+			$Panel.visible=true
+
